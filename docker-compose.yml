@@ -1,0 +1,15 @@
+# Does not address VSCODE dependencies like Jupyter notebook editor and Pylance
+
+version: '3.8'
+
+services:
+  python_automation:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    # This runs the pip prerequisites automatically when the container boots up
+    command: >
+      bash -c "pip install pdfplumber reportlab python-pptx pandas openpyxl && tail -f /dev/null"
